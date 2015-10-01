@@ -10,7 +10,7 @@ spec = Gem::Specification.new do |s|
   s.author = "Jeremy Evans"
   s.email = "code@jeremyevans.net"
   s.homepage = "https://github.com/jeremyevans/tilt-pipeline"
-  s.files = %w(MIT-LICENSE CHANGELOG README.rdoc Rakefile) + Dir["{spec,lib}/**/*.rb"]
+  s.files = %w(MIT-LICENSE CHANGELOG README.rdoc Rakefile) + Dir["{test,lib}/**/*.rb"]
   s.description = <<END
 tilt-pipeline allows you to easily construct rendering pipelines using tilt.
 For example, you can register the scss.erb pipeline so that your scss
