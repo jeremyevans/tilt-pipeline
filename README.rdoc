@@ -1,0 +1,43 @@
+= tilt-pipeline
+
+tilt-pipeline allows you to easily construct rendering pipelines using tilt.
+For example, you can register the scss.erb pipeline so that your scss
+templates will be preprocessed by ERB before being processed by sass.
+
+= Installation
+
+  gem install tilt-pipeline
+
+= Source Code
+
+Source code is available on GitHub at https://github.com/jeremyevans/tilt-pipeline
+
+= Examples
+
+If you are using the default template mapping, you just call +Tilt.pipeline+ with
+the pipeline extension:
+
+  Tilt.pipeline('scss.erb')
+
+This will register the +scss.erb+ extension, so that template files ending in
++scss.erb+ will be processed by the +erb+ processor first, and the output of
+the +erb+ processor will be passed to the +scss+ processor.
+
+You can also call +pipeline+ on any <tt>Tilt::Mapping</tt>:
+
+  mapping.pipeline('scss.erb')
+
+and it will register that pipeline in that mapping instead of the default mapping.
+
+= Want it Upstream?
+
+If you think this library would be useful to have in tilt itself, there is an open
+pull request that you can comment on: https://github.com/rtomayko/tilt/pull/259
+
+= License
+
+MIT
+
+= Author
+
+Jeremy Evans <code@jeremyevans.net>
