@@ -12,7 +12,7 @@ end
 
 desc "Run tests"
 task :test do
-  sh "#{FileUtils::RUBY} -rubygems test/tilt_pipeline_test.rb"
+  sh "#{FileUtils::RUBY} test/tilt_pipeline_test.rb"
 end
 
 task :default => :test
