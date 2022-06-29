@@ -1,4 +1,3 @@
-require "rake"
 require "rake/clean"
 
 CLEAN.include ["tilt-pipeline-*.gem", "rdoc", "coverage"]
@@ -17,29 +16,25 @@ end
 
 task :default => :test
 
+desc "Run tests with coverage"
+task :test_cov do 
+  ENV['COVERAGE'] = '1'
+  sh "#{FileUtils::RUBY} test/tilt_pipeline_test.rb"
+end
+
 ### RDoc
 
-RDOC_DEFAULT_OPTS = ["--quiet", "--line-numbers", "--inline-source", '--title', 'tilt-pipeline: Easily construct rendering pipelines using tilt']
+require "rdoc/task"
 
-begin
-  gem 'hanna-nouveau'
-  RDOC_DEFAULT_OPTS.concat(['-f', 'hanna'])
-rescue Gem::LoadError
-end
-
-rdoc_task_class = begin
-  require "rdoc/task"
-  RDoc::Task
-rescue LoadError
-  require "rake/rdoctask"
-  Rake::RDocTask
-end
-
-RDOC_OPTS = RDOC_DEFAULT_OPTS + ['--main', 'README.rdoc']
-
-rdoc_task_class.new do |rdoc|
+RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = "rdoc"
-  rdoc.options += RDOC_OPTS
+  rdoc.options += ["--quiet", "--line-numbers", "--inline-source", '--title', 'tilt-pipeline: Easily construct rendering pipelines using tilt', '--main', 'README.rdoc']
+
+  begin
+    gem 'hanna-nouveau'
+    rdoc.options += ['-f', 'hanna']
+  rescue Gem::LoadError
+  end
+
   rdoc.rdoc_files.add %w"README.rdoc CHANGELOG MIT-LICENSE lib/**/*.rb"
 end
-

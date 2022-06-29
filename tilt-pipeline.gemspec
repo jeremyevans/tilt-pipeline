@@ -15,6 +15,7 @@ tilt-pipeline allows you to easily construct rendering pipelines using tilt.
 For example, you can register the scss.erb pipeline so that your scss
 templates will be preprocessed by ERB before being processed by sass.
 END
+  s.required_ruby_version = ">= 1.9.2"
   s.add_dependency('tilt', '>= 2')
   s.add_development_dependency('minitest')
 end
